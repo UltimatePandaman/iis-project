@@ -15,19 +15,13 @@ class CreateConferencesTable extends Migration
     {
         Schema::create('conferences', function (Blueprint $table) {
             $table->id();
-            //relace pro uživatele
-            $table->unsignedBigInteger('user_id');
-            
-            $table->string('name');
-            $table->tinyText('description')->nullable();
-            $table->string('image')->nullable();
-            //začátek a konec konference
-            $table->timestamp('start')->nullable();
-            $table->timestamp('end')->nullable();
-
+            $table->foreignId('user_id')->constrained();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->date('from');
+            $table->date('to');
             $table->timestamps();
 
-            //vždycky pěkné hodit index pro foreign keys
             $table->index('user_id');
         });
     }

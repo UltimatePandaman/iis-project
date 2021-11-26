@@ -53,7 +53,11 @@ class User extends Authenticatable
     }
 
     public function conferences(){
-        return $this->hasMany(Conferences::class);
+        return $this->hasMany('App\Models\Conference');
+    }
+
+    public function presentations(){
+        return $this->hasMany('App\Models\Presentation');
     }
 
     public function profile(){

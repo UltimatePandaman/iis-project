@@ -19,8 +19,10 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-gray-100">
+        @if(auth()->check())
         <div style="background-image: url('{{ Auth::user()->profile->background_image }}')" class="bg-cover min-h-screen bg-gray-100">
+        @endif
             @include('layouts.navigation')
 
             <!-- Page Heading -->

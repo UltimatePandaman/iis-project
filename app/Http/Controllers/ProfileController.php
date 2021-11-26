@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
 use App\Models\User;
 
+
 class ProfileController extends Controller
 {
     public function index(){
@@ -25,8 +26,7 @@ class ProfileController extends Controller
     }
 
     public function update(User $user){
-        //$this->authorize('update', $user->profile);
-
+        //$this->authorize('update', $user->profile)
         //Zkontroluji vstup
         $data = request()->validate([
             'nickname' => ['string', 'max:50'],
