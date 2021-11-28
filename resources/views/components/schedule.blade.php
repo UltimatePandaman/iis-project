@@ -41,7 +41,8 @@
                         {
                         title: '{{ $event->title }}',
                         start: '{{ $event->from }}',
-                        end: '{{ $event->to }}'
+                        end: '{{ $event->to }}',
+                        url: '{{ __('conference/').$event->id }}'
                         },
                     @endforeach
                 ]
