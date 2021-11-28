@@ -22,9 +22,7 @@
                 </div>
                 <!--  -->
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-schedule>
-
-                    </x-schedule>
+                    <x-schedule :obj="$user"/>
                 </div>
             </div>
         </div>
