@@ -30,12 +30,12 @@
             </div>
 
             <div class="form-group row">
-                <label for="from" class="col-md-4 col-form-label text-md-right">Start date:</label>
+                <label for="start" class="col-md-4 col-form-label text-md-right">Start date:</label>
 
                 <div class="col-md-6">
-                    <input id="from" name="from" type="date" class="form-control @error('from') is-invalid @enderror" value="{{ old('from') }}" required autocomplete="from" autofocus>
+                    <input id="start" name="start" type="date" class="form-control @error('start') is-invalid @enderror" value="{{ old('start') }}" required autocomplete="start" autofocus>
 
-                    @error('from')
+                    @error('start')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -44,12 +44,12 @@
             </div>
 
             <div class="form-group row">
-                <label for="to" class="col-md-4 col-form-label text-md-right">End date:</label>
+                <label for="end" class="col-md-4 col-form-label text-md-right">End date:</label>
 
                 <div class="col-md-6">
-                    <input id="to" name="to" type="date" class="form-control @error('to') is-invalid @enderror" value="{{ old('to') }}" required autocomplete="to" autofocus>
+                    <input id="end" name="end" type="date" class="form-control @error('end') is-invalid @enderror" value="{{ old('end') }}" required autocomplete="end" autofocus>
 
-                    @error('to')
+                    @error('end')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

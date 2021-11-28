@@ -15,11 +15,12 @@ class CreateConferencesTable extends Migration
     {
         Schema::create('conferences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('from');
-            $table->date('to');
+            $table->bigInteger('capacity')->nullable();
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
 
             $table->index('user_id');

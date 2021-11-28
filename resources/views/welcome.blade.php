@@ -15,8 +15,10 @@
     <div class="row">
     @foreach ($conferences as $conference)
         <div class="col-4">
-            <x-nav-link href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link>
-            <font size = "+1"><div class="row pl-3">{{$conference->description}}</div></font>
+            <x-nav-link class="mr-5 pt-5" href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link>
+            <div class="row">Capacity: {{$conference->capacity}}</div>
+            <font size = "+1"><div class="row pt-2">{{$conference->description}}</div></font>
+            
         </div>    
     @endforeach
 

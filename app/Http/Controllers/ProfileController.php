@@ -11,6 +11,14 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
+    public function conferences(){
+        return view('profile/conferences')->with('user', Auth::user());
+    }
+
+    public function rooms(){
+        return view('profile/rooms')->with('user', Auth::user());
+    }
+
     public function index(){
         return view('profile.index')->with('user', Auth::user());
     }
