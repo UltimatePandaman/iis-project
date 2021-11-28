@@ -23,6 +23,7 @@ class ConferencesController extends Controller
     public function update(Conference $conference){
         $data = request()->validate([
             'title' => 'required',
+            'capacity' => 'required|numeric|gt:0',
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'description' => '',
@@ -44,6 +45,7 @@ class ConferencesController extends Controller
     public function store(){
         $data = request()->validate([
             'title' => 'required',
+            'capacity' => 'required|numeric|gt:0',
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'description' => '',

@@ -30,6 +30,20 @@
             </div>
 
             <div class="form-group row">
+                <label for="capacity" class="col-md-4 col-form-label text-md-right">Capacity:</label>
+
+                <div class="col-md-6">
+                    <input id="capacity" name="capacity" type="number" class="form-control @error('capacity') is-invalid @enderror" value="{{ old('capacity') }}" required autocomplete="capacity" autofocus>
+
+                    @error('capacity')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="start" class="col-md-4 col-form-label text-md-right">Start date:</label>
 
                 <div class="col-md-6">

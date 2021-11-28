@@ -41,8 +41,6 @@ class RoomController extends Controller
             'capacity' => 'required|integer',
         ]);
         $newroom = new Room($data);
-        $capacity = (int)$data['capacity'] + (int)Conference::find($key)->capacity;
-        Conference::find($key)->update(['capacity' => $capacity]);
         //$data['user_id'] = auth()->id();
         //Conference::create($data);
         Conference::find($key)->rooms()->save($newroom);

@@ -18,7 +18,7 @@ class CreateConferencesTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->bigInteger('capacity')->nullable();
+            $table->bigInteger('capacity');
             $table->date('start');
             $table->date('end');
             $table->timestamps();
