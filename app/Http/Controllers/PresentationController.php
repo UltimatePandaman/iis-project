@@ -11,7 +11,42 @@ class PresentationController extends Controller
 {
     public function create(\App\Models\Conference $conference){
         $key = $conference->id;
-        return view('presentations/create', compact('key'));
+        return view('presentations/create-p', compact('key'));
+
+    }
+
+    public function edit (Presentation $presentation){
+        return view('presentations/edit-p', compact('presentation'));
+
+    }
+
+    public function patch(Presentation $presentation){
+        $data = request()->validate([
+            'date' => 'required|date',
+            'start' => 'required',
+            'end' => 'required|after:start',
+        ]);
+        $presentation->accepted = 1;
+        $presentation->update($data);
+        return redirect("/presentation/pending");
+        
+    }
+
+    public function pending(){
+        $user = auth()->user();
+        return view('presentations/pending', compact('user'));
+
+    }
+
+    public function accept(Presentation $presentation){
+        
+        $presentation->update();
+        return redirect('presentation/pending');
+
+    }
+    public function delete(Presentation $presentation){
+        Presentation::destroy($presentation->id);
+        return redirect('presentation/pending');
 
     }
 

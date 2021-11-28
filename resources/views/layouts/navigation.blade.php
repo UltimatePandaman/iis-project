@@ -45,6 +45,12 @@
                             </x-dropdown-link>
                         </form>
 
+                        <x-dropdown-link href="/profile/rooms">My rooms</x-dropdown-link>
+
+                        <x-dropdown-link href="/profile/conferences">My conferences</x-dropdown-link>
+
+                        <x-dropdown-link href="/presentation/pending">Pending presentations</x-dropdown-link>
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 

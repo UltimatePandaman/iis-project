@@ -15,13 +15,13 @@ class Conference extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'start' => 'datetime',
-        'end' => 'datetime',
-    ];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function rooms(){
+        return $this->hasMany('App\Models\Room');
     }
 
     public function presentations(){
