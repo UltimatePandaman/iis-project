@@ -6,12 +6,9 @@
         </h2>
     </x-slot>
 <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4"><a href="c/create"><x-redirectbutton>Create new conference</x-redirectbutton></a></div>
     <div class= "max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="row">
-            <div class="col-9 pt-5">
-                <a href="c/create"><x-redirectbutton>Create new conference</x-redirectbutton></a>
-            </div>
-        </div>    
+ 
     <div class="row">
     @foreach ($conferences as $conference)
         <div class="col-4">

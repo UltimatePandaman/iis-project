@@ -40,10 +40,9 @@ form, table {
             <div class="column"><x-nav-link href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link></div>
             <div class="column">{{$user->name}}</div>
             <div class="column">
-                <form action="/presentation/accept/{{$presentation->id}}" method="post">
-                    @csrf
-                    <x-redirectbutton type="submit" class="ml-4 bg-green-500 hover:bg-green-400">Accept</x-redirectbutton>
-                </form>
+
+                   <a href="/presentation/edit/{{$presentation->id}}"><x-redirectbutton type="submit" class="ml-4 bg-green-500 hover:bg-green-400">Accept</x-redirectbutton></a>
+
                 <form action="/presentation/delete/{{$presentation->id}}" method="post">
                     @csrf
                     <x-redirectbutton type="submit" class="mb-2 ml-2 bg-red-500 hover:bg-red-400">Reject</x-redirectbutton>
