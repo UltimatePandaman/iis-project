@@ -36,9 +36,11 @@ Route::get('/presentation/pending', 'App\Http\Controllers\PresentationController
 Route::get('/presentation/edit/{presentation}', 'App\Http\Controllers\PresentationController@edit')->middleware(['auth']);
 Route::post('/presentation/accept/{presentation}', 'App\Http\Controllers\PresentationController@accept')->middleware(['auth']);
 Route::post('/presentation/delete/{presentation}', 'App\Http\Controllers\PresentationController@delete')->middleware(['auth']);
+Route::post('/presentation/reject/{presentation}', 'App\Http\Controllers\PresentationController@reject')->middleware(['auth']);
 Route::patch('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@patch')->middleware(['auth']);
 Route::post('/p/{key}/create', 'App\Http\Controllers\PresentationController@store')->middleware(['auth']);
-//Route::get('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@show');
+Route::get('/conference/{conference}/presentations', 'App\Http\Controllers\PresentationController@showall');
+Route::get('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@show');
 
 //ROOM
 Route::get('/conference/{conference}/create-r', 'App\Http\Controllers\RoomController@create')->middleware(['auth']);
@@ -63,5 +65,12 @@ Route::delete('/visit/{pivot}/delete', [VisitorsController::class, 'destroy'])->
 Route::patch('/visit/{pivot}', [VisitorsController::class, 'update'])->middleware(['auth']);
 Route::get('/visit/{conference}/edit', [VisitorsController::class, 'edit'])->name('visit.edit');
 
+//ADMIN
+Route::get('/admin/users', 'App\Http\Controllers\AdminController@view')->middleware(['auth']);
+Route::get('/user/{user}/edit', 'App\Http\Controllers\AdminController@edit')->middleware(['auth']);
+Route::get('/user/create', 'App\Http\Controllers\AdminController@create')->middleware(['auth']);
+Route::post('/user/create', 'App\Http\Controllers\AdminController@store')->middleware(['auth']);
+Route::post('/user/{user}/delete', 'App\Http\Controllers\AdminController@delete')->middleware(['auth']);
+Route::patch('/user/{user}/edit', 'App\Http\Controllers\AdminController@update')->middleware(['auth']);
 
 require __DIR__.'/auth.php';

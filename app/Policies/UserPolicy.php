@@ -27,9 +27,9 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model)
+    public function isadmin(User $user, User $model)
     {
-        //
+        return $user->isadmin == 1;
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return ($user->username === $model->username) || ( $user->username === 'admin');
+        //
     }
 
     /**

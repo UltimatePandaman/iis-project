@@ -17,6 +17,7 @@ class CreatePresentationsTable extends Migration
             $table->id();
             $table->foreignId('conference_id')->constrained('conferences')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('room_id')->nullable();
             $table->tinyInteger('accepted')->default(0);
             $table->string('title');
             $table->text('content');

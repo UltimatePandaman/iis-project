@@ -18,10 +18,15 @@
             <x-nav-link href="/room/{{$room->id}}">{{$room->name}}</x-nav-link>,
         @endforeach
         </div>
+        <div class="row"><x-nav-link href="/conference/{{$conference->id}}/presentations">View presentations</x-nav-link></div>
         <div class="row pt-4 pb-4">{{$conference->description}}</div>
     </font>
+    @if (auth()->check())
     <a href="{{$conference->id}}/create-p"><x-redirectbutton>Create new presentation</x-redirectbutton></a>
+    @can('create', $conference)
     <a href="{{$conference->id}}/create-r"><x-redirectbutton>Add room</x-redirectbutton></a>
+    @endcan
+    @endif
 </div>
 </div>
 </x-app-layout>

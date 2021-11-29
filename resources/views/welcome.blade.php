@@ -6,7 +6,9 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4"><a href="c/create"><x-redirectbutton>Create new conference</x-redirectbutton></a></div>
+        @if (auth()->check())
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4"><a href="c/create"><x-redirectbutton>Create new conference</x-redirectbutton></a></div>
+        @endif
 
         <div class= "max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

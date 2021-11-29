@@ -18,7 +18,6 @@ class ConferencePolicy
      */
     public function viewAny(User $user)
     {
-        return true;
     }
 
     /**
@@ -30,7 +29,6 @@ class ConferencePolicy
      */
     public function view(User $user, Conference $conference)
     {
-        return ;
     }
 
     /**
@@ -39,9 +37,14 @@ class ConferencePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, Conference $conference)
     {
-        return true;
+        if($user->id == $conference->user_id or $user->isadmin == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +56,12 @@ class ConferencePolicy
      */
     public function update(User $user, Conference $conference)
     {
-        ;
+        if($user->id == $conference->user_id or $user->isadmin == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +73,12 @@ class ConferencePolicy
      */
     public function delete(User $user, Conference $conference)
     {
-        //
+        if($user->id == $conference->user_id or $user->isadmin == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

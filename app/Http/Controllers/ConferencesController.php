@@ -14,12 +14,14 @@ class ConferencesController extends Controller
     }
 
     public function edit(Conference $conference){
+        $this->authorize('update', $conference);
         
         return view('conferences/edit-c', compact('conference'));
 
     }
 
     public function update(Conference $conference){
+        $this->authorize('update', $conference);
         $data = request()->validate([
             'title' => 'required',
             'capacity' => 'required|numeric|gt:0',
@@ -35,6 +37,7 @@ class ConferencesController extends Controller
     }
 
     public function delete($id){
+        $this->authorize('delete', Conference::find($id));
         Conference::destroy($id);
         return redirect('profile/conferences');
 
