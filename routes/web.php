@@ -41,6 +41,7 @@ Route::patch('/presentation/{presentation}', 'App\Http\Controllers\PresentationC
 Route::post('/p/{key}/create', 'App\Http\Controllers\PresentationController@store')->middleware(['auth']);
 Route::get('/conference/{conference}/presentations', 'App\Http\Controllers\PresentationController@showall');
 Route::get('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@show');
+Route::post('/attend/{presentation}', '\App\Http\Controllers\AttendanceController@store')->name('attend.store');
 
 //ROOM
 Route::get('/conference/{conference}/create-r', 'App\Http\Controllers\RoomController@create')->middleware(['auth']);

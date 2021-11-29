@@ -50,8 +50,7 @@
                         title: '{{ $event->title }}',
                         start: '{{ $event->date.__('T').$event->start }}',
                         end: '{{ $event->date.__('T').$event->end }}',
-                        //URL TODO
-                        //url: '{{ __('conference/').$event->id }}',
+                        url: '{{ __('presentation/').$event->id }}',
                         color: '#3E5F8A'
                         },
                     @endforeach
@@ -62,6 +61,15 @@
                         end: '{{ $event->end }}',
                         url: '{{ __('conference/').$event->id }}',
                         color: '#A2231D'
+                        },
+                    @endforeach
+                    @foreach ($obj->attending as $event)
+                        {
+                        title: '{{ $event->title }}',
+                        start: '{{ $event->date.__('T').$event->start }}',
+                        end: '{{ $event->date.__('T').$event->end }}',
+                        url: '{{ __('conference/').$event->id }}',
+                        color: '#DE4C8A'
                         },
                     @endforeach
                 ]

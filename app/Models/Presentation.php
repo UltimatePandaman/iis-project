@@ -21,8 +21,8 @@ class Presentation extends Model
     public function conference(){
         return $this->belongsTo('App\Models\Conference');
     }
-    
-    public function conference(){
-        return $this->belongsTo('App\Models\Conference');
+
+    public function attendance(){
+        return $this->belongsToMany(User::class);
     }
 }

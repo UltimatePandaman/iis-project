@@ -79,6 +79,6 @@ class User extends Authenticatable
      */
     public function attending()
     {
-        return $this->morphToMany('App\Models\Presentation', 'presentation_visitors');
+        return $this->belongsToMany(Presentation::class);
     }
 }
