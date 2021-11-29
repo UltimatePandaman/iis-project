@@ -31,6 +31,8 @@ class AdminController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         
+        $data['password'] = Hash::make($data['password']);
+        
         $user->update($data);
 
         return redirect('admin/users');
