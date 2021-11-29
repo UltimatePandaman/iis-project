@@ -11,18 +11,19 @@ use Illuminate\Auth\Events\Registered;
 class AdminController extends Controller
 {
     public function view(){
-        $this->authorize('create');
+        $user = auth()->user();
+        $this->authorize('isadmin',$user);
         $users = User::all();
         return view('admin/users', compact('users'));
     }
 
     public function create(User $user){
-        $this->authorize('create');
+        $this->authorize('isadmin', $user);
         return view('admin/create-u', compact('user'));
     }
 
     public function update(User $user){
-        $this->authorize('create');
+        $this->authorize('isadmin', $user);
         $data = request()->validate([
             'name' => ['required', 'string', 'max:50'],
             'username' => ['required', 'string', 'max:50'],
@@ -36,7 +37,8 @@ class AdminController extends Controller
     }
 
     public function store(Request $request){
-        $this->authorize('create');
+        $user = auth()->user();
+        $this->authorize('isadmin',$user);
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
             'username' => ['required', 'string', 'max:50', 'unique:users'],
@@ -52,16 +54,16 @@ class AdminController extends Controller
         ]);
 
         event(new Registered($user));
-        return redirect('/admin/users');
+        return redirect('isadmin');
     }
 
     public function edit(User $user){
-        $this->authorize('create');
+        $this->authorize('isadmin', $user);
         return view('admin/edit-u', compact('user'));
     }
 
     public function delete(User $user){
-        $this->authorize('create');
+        $this->authorize('isadmin', $user);
         User::destroy($user->id);
 
         return redirect('/admin/users');

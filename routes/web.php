@@ -54,11 +54,11 @@ Route::get('/c/create', 'App\Http\Controllers\ConferencesController@create')->mi
 Route::post('/c', 'App\Http\Controllers\ConferencesController@store')->middleware(['auth']);
 
 //ADMIN
-Route::get('/admin/users', 'App\Http\Controllers\AdminController@view');
-Route::get('/user/{user}/edit', 'App\Http\Controllers\AdminController@edit');
-Route::get('/user/create', 'App\Http\Controllers\AdminController@create');
-Route::post('/user/create', 'App\Http\Controllers\AdminController@store');
-Route::post('/user/{user}/delete', 'App\Http\Controllers\AdminController@delete');
-Route::patch('/user/{user}/edit', 'App\Http\Controllers\AdminController@update');
+Route::get('/admin/users', 'App\Http\Controllers\AdminController@view')->middleware(['auth']);
+Route::get('/user/{user}/edit', 'App\Http\Controllers\AdminController@edit')->middleware(['auth']);
+Route::get('/user/create', 'App\Http\Controllers\AdminController@create')->middleware(['auth']);
+Route::post('/user/create', 'App\Http\Controllers\AdminController@store')->middleware(['auth']);
+Route::post('/user/{user}/delete', 'App\Http\Controllers\AdminController@delete')->middleware(['auth']);
+Route::patch('/user/{user}/edit', 'App\Http\Controllers\AdminController@update')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
