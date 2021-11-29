@@ -27,6 +27,9 @@
     <a href="{{$conference->id}}/create-r"><x-redirectbutton>Add room</x-redirectbutton></a>
     @endcan
     @endif
+    <div class="p-6 bg-white border-b border-gray-200">
+        <x-room_schedule :obj="$conference"/>
+    </div>
 </div>
 </div>
 </x-app-layout>
