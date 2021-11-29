@@ -23,6 +23,24 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function edit(User $user){
+        $this->authorize('update', $user);
+
+        return view('user.edit')->with('user', $user);
+    }
+
+    public function update(User $user){
+        $data = request()->validate([
+            'balance' => ['numeric', 'integer', 'gte:0'],
+        ]);
+
+        //Update
+        $user->update($data);
+
+        //Zpátky na "Dashboard" uživatele, trochu workaround, protože by jinak nefungoval update.
+        return redirect()->route('profile.index', ['user' => Auth::user()]);
+    }
+
     /**
      * Handle an incoming registration request.
      *

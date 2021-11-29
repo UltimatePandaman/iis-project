@@ -11,7 +11,6 @@ class ConferencesController extends Controller
 {
     public function create(){
         return view('conferences/create-c');
-
     }
 
     public function edit(Conference $conference){
@@ -49,6 +48,7 @@ class ConferencesController extends Controller
             'start' => 'required|date',
             'end' => 'required|date|after:start',
             'description' => '',
+            'price' => 'numeric',
         ]);
         $newconf = new Conference($data);
         //$data['user_id'] = auth()->id();

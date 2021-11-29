@@ -12,6 +12,7 @@
         <div class="row">Created by: {{$conference->user->name}}</div>
         <div class="row">From: {{$conference->start}}</div>
         <div class="row">To: {{$conference->end}}</div>
+        <div class="row">Price: {{$conference->price}}</div>
         <div class="row">Rooms: 
         @foreach ($conference->rooms as $room)
             <x-nav-link href="/room/{{$room->id}}">{{$room->name}}</x-nav-link>,

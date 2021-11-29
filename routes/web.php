@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\WelcomeController@show');
 
 Route::get('/dashboard', function () {return redirect('/profile');})->name('dashboard');
+
+//USER
+Route::get('/user/{user}/edit', [RegisteredUserController::class, 'edit'])->middleware(['auth'])->name('user.edit');
+Route::patch('/user/{user}', [RegisteredUserController::class, 'update'])->middleware(['auth'])->name('user.update');
 
 //PROFILE
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');

@@ -21,7 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.min.js" integrity="sha512-9M3YQ9E3hEtjRZSQdU1QADaOGxI+JAzq6bieArw7nIxQbPmn10M7TYxhvJZCuvSjlncJG24l+/e5d1bTRN3m4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        var events = {!! json_encode($conferences($obj)); !!};
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -37,12 +36,21 @@
                 editable: false,
                 eventLimit: false, // allow "more" link when too many events
                 events: [
-                    @foreach ($conferences($obj) as $event)
+                    @foreach ($obj->conferences as $event)
                         {
                         title: '{{ $event->title }}',
-                        start: '{{ $event->from }}',
-                        end: '{{ $event->to }}',
+                        start: '{{ $event->start }}',
+                        end: '{{ $event->end }}',
                         url: '{{ __('conference/').$event->id }}'
+                        },
+                    @endforeach
+                    @foreach ($obj->presentations as $event)
+                        {
+                        title: '{{ $event->title }}',
+                        start: '{{ $event->date.__('T').$event->start }}',
+                        end: '{{ $event->date.__('T').$event->end }}',
+                        //URL TODO
+                        //url: '{{ __('conference/').$event->id }}'
                         },
                     @endforeach
                 ]

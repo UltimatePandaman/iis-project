@@ -85,6 +85,20 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="price" class="col-md-4 col-form-label text-md-right">Price:</label>
+
+                <div class="col-md-6">
+                    <input id="price" name="price" type="number" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" required autocomplete="capacity" autofocus>
+                    <span> Euro</span>
+                    @error('price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
             <div class="row">
                 <div>
                     <x-button class="mt-4">
