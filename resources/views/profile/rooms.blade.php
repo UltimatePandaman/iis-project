@@ -12,11 +12,7 @@
         My rooms
         </h2>
     </x-slot>
-    @if ($user->conferences()->first() != null)
-        
-        @if ($user->conferences()->first()->rooms()->first() != null)
-            
-        @else
+
             <div class="py-12">
                 <div class= "max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     @foreach ($user->conferences as $conference)
@@ -39,6 +35,4 @@
                     @endforeach
                 </div>
             </div>
-        @endif
-    @endif
 </x-app-layout>
