@@ -21,7 +21,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 pr-2">
-                    {{ Auth::user()->balance }},- €
+                    {{ Auth::user()->balance ?? 0 }},- €
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

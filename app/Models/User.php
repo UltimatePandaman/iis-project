@@ -64,4 +64,20 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
+
+    /**
+     * Na které konference je přihlášen.
+     */
+    public function visiting()
+    {
+        return $this->belongsToMany('App\Models\Conference');
+    }
+
+    /**
+     * Na které přednášky hodlá jít. TODO
+     */
+    public function attending()
+    {
+        return $this->belongsToMany('App\Models\Presentation');
+    }
 }

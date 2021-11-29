@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VisitorsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,5 +56,6 @@ Route::patch('/conference/{conference}', 'App\Http\Controllers\ConferencesContro
 Route::get('/conference/{conference}/edit', 'App\Http\Controllers\ConferencesController@edit')->middleware(['auth']);
 Route::get('/c/create', 'App\Http\Controllers\ConferencesController@create')->middleware(['auth']);
 Route::post('/c', 'App\Http\Controllers\ConferencesController@store')->middleware(['auth']);
+Route::get('/visit/{conference}', [VisitorsController::class, 'store'])->middleware(['auth'])->name('visit.store');
 
 require __DIR__.'/auth.php';

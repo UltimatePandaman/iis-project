@@ -27,4 +27,9 @@ class Conference extends Model
     public function presentations(){
         return $this->hasMany('App\Models\Presentation');
     }
+
+    public function visitors()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

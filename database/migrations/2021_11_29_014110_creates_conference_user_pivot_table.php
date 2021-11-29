@@ -15,6 +15,8 @@ class CreatesConferenceUserPivotTable extends Migration
     {
         Schema::create('conference_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('conference_id')->constrained('conferences');
             $table->timestamps();
         });
     }
