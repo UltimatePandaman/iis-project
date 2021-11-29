@@ -8,7 +8,9 @@
 
 <x-app-layout>
     <x-slot name="header">
+        <h2 class="text-xl">
         My rooms
+        </h2>
     </x-slot>
     @if ($user->conferences()->first() != null)
         
@@ -22,7 +24,10 @@
             @foreach ($user->conferences as $conference)
             @foreach ($conference->rooms as $room)
 
-            <div class="div pt-4">{{$room->name}} is a room for: {{$conference->title}}
+            <div class="div pt-4">
+                <x-nav-link href="/room/{{$room->id}}">{{$room->name}}</x-nav-link>
+                 is a room for: 
+                 <x-nav-link href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link>
                 <form action="/room/delete/{{$room->id}}" method="post">
                     @csrf
                     <x-redirectbutton type="submit" class="ml-4 bg-red-500 hover:bg-red-400">Delete</x-redirectbutton>

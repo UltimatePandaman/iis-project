@@ -14,6 +14,10 @@ class Presentation extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function room(){
+        return $this->belongsTo('App\Models\Room');
+    }
+
     public function conference(){
         return $this->belongsTo('App\Models\Conference');
     }

@@ -31,9 +31,11 @@ Route::get('/presentation/pending', 'App\Http\Controllers\PresentationController
 Route::get('/presentation/edit/{presentation}', 'App\Http\Controllers\PresentationController@edit')->middleware(['auth']);
 Route::post('/presentation/accept/{presentation}', 'App\Http\Controllers\PresentationController@accept')->middleware(['auth']);
 Route::post('/presentation/delete/{presentation}', 'App\Http\Controllers\PresentationController@delete')->middleware(['auth']);
+Route::post('/presentation/reject/{presentation}', 'App\Http\Controllers\PresentationController@reject')->middleware(['auth']);
 Route::patch('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@patch')->middleware(['auth']);
 Route::post('/p/{key}/create', 'App\Http\Controllers\PresentationController@store')->middleware(['auth']);
-//Route::get('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@show');
+Route::get('/conference/{conference}/presentations', 'App\Http\Controllers\PresentationController@showall');
+Route::get('/presentation/{presentation}', 'App\Http\Controllers\PresentationController@show');
 
 //ROOM
 Route::get('/conference/{conference}/create-r', 'App\Http\Controllers\RoomController@create')->middleware(['auth']);
@@ -50,5 +52,13 @@ Route::patch('/conference/{conference}', 'App\Http\Controllers\ConferencesContro
 Route::get('/conference/{conference}/edit', 'App\Http\Controllers\ConferencesController@edit')->middleware(['auth']);
 Route::get('/c/create', 'App\Http\Controllers\ConferencesController@create')->middleware(['auth']);
 Route::post('/c', 'App\Http\Controllers\ConferencesController@store')->middleware(['auth']);
+
+//ADMIN
+Route::get('/admin/users', 'App\Http\Controllers\AdminController@view');
+Route::get('/user/{user}/edit', 'App\Http\Controllers\AdminController@edit');
+Route::get('/user/create', 'App\Http\Controllers\AdminController@create');
+Route::post('/user/create', 'App\Http\Controllers\AdminController@store');
+Route::post('/user/{user}/delete', 'App\Http\Controllers\AdminController@delete');
+Route::patch('/user/{user}/edit', 'App\Http\Controllers\AdminController@update');
 
 require __DIR__.'/auth.php';

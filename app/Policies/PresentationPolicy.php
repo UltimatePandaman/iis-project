@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Profile;
+use App\Models\Presentation;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProfilePolicy
+class PresentationPolicy
 {
     use HandlesAuthorization;
 
@@ -18,42 +18,31 @@ class ProfilePolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Presentation  $presentation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Profile $profile)
+    public function view(User $user, Presentation $presentation)
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function create(User $user)
-    {
-        return $user->isadmin == 1;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Presentation  $presentation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Profile $profile)
+    public function update(User $user, Presentation $presentation)
     {
-        if($user->id == $profile->user_id or $user->isadmin == 1){
+        if($user->id == $presentation->conference()->first()->user_id or $user->isadmin == 1){
             return true;
         }
         else{
@@ -65,40 +54,35 @@ class ProfilePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Presentation  $presentation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Profile $profile)
+    public function delete(User $user, Presentation $presentation)
     {
-        return false;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Presentation  $presentation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Profile $profile)
+    public function restore(User $user, Presentation $presentation)
     {
-        return false;
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Presentation  $presentation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Profile $profile)
+    public function forceDelete(User $user, Presentation $presentation)
     {
-        if($user->id == $profile->user_id or $user->isadmin == 1){
-            return true;
-        }
-        else{
-            return false;
-        }
+        //
     }
 }
