@@ -70,7 +70,7 @@ class User extends Authenticatable
      */
     public function visiting()
     {
-        return $this->belongsToMany('App\Models\Conference');
+        return $this->morphToMany('App\Models\Conference', 'conference_visitors')->using(ConferenceVisitorPivot::class)->withPivot(['status', 'id'])->withTimestamps();
     }
 
     /**
@@ -78,6 +78,6 @@ class User extends Authenticatable
      */
     public function attending()
     {
-        return $this->belongsToMany('App\Models\Presentation');
+        return $this->morphToMany('App\Models\Presentation', 'presentation_visitors');
     }
 }

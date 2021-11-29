@@ -35,7 +35,6 @@ class PresentationController extends Controller
     public function pending(){
         $user = auth()->user();
         return view('presentations/pending', compact('user'));
-
     }
 
     public function accept(Presentation $presentation){

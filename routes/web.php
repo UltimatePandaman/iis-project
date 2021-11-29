@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'App\Http\Controllers\WelcomeController@show');
 
 Route::get('/dashboard', function () {return redirect('/profile');})->name('dashboard');
@@ -56,6 +55,13 @@ Route::patch('/conference/{conference}', 'App\Http\Controllers\ConferencesContro
 Route::get('/conference/{conference}/edit', 'App\Http\Controllers\ConferencesController@edit')->middleware(['auth']);
 Route::get('/c/create', 'App\Http\Controllers\ConferencesController@create')->middleware(['auth']);
 Route::post('/c', 'App\Http\Controllers\ConferencesController@store')->middleware(['auth']);
-Route::get('/visit/{conference}', [VisitorsController::class, 'store'])->middleware(['auth'])->name('visit.store');
+
+//REZERVATION
+Route::get('/visit/pending', [VisitorsController::class, 'pending'])->middleware(['auth'])->name('visit.pending');
+Route::post('/visit/{conference}', [VisitorsController::class, 'store'])->name('visit.store');
+Route::delete('/visit/{pivot}/delete', [VisitorsController::class, 'destroy'])->middleware(['auth']);
+Route::patch('/visit/{pivot}', [VisitorsController::class, 'update'])->middleware(['auth']);
+Route::get('/visit/{conference}/edit', [VisitorsController::class, 'edit'])->name('visit.edit');
+
 
 require __DIR__.'/auth.php';

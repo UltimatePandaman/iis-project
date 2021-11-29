@@ -15,35 +15,32 @@
                     <div class="flex justify-between items-center mb-2 mt-2">
                         <div class="">
                             <x-nav-link class="mr-5 pt-5" href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link>
-                            <div class="row">Capacity: {{ $conference->visitors->count() }}/{{$conference->capacity}}</div>
+                            <div class="row">Capacity: {{ $conference->visitors->count()+$conference->anons->count() }}/{{$conference->capacity}}</div>
                             <div class="row pt-2">{{$conference->description}}</div>
                         </div>
                         @if(Auth::check())
-                            @if($conference->visitors->contains(Auth::user()->id) == false)
-                                <div class="flex items-center">
-                                    {{$conference->price}},- €
+                            <div class="flex items-center">
+                                {{$conference->price}},- €
+                                <form method="POST" action="{{ route('visit.store', ['conference' => $conference]) }}">
+                                    @csrf
                                     <a class="ml-2" href="{{ route('visit.store', ['conference' => $conference]) }}">
-                                        <x-buybutton>
-                                            Buy Conference
+                                        <x-buybutton 
+                                            onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                            {{ __('Buy Conference') }}
                                         </x-buybutton>
                                     </a>
-                                </div>
-                            @elseif($conference->user_id == Auth::user()->id)
-                                <div class="flex items-center">
-                                    {{$conference->price}},- €
-                                    <a class="ml-2" href="/conference/{{$conference->id}}/edit">
-                                        <x-buybutton class="bg-blue-700">
-                                            Edit Conference
-                                        </x-buybutton>
-                                    </a>
-                                </div>
-                            @else
-                                <div class="flex items-center">
-                                    <x-button>
-                                        Bought!
-                                    </x-button>
-                                </div>
-                            @endif
+                                </form>
+                            </div>
+                        @else
+                            <div class="flex items-center">
+                                {{$conference->price}},- €
+                                <a class="ml-2" href="{{ route('visit.edit', ['conference' => $conference]) }}">
+                                    <x-buybutton>
+                                        Buy Conference
+                                    </x-buybutton>
+                                </a>
+                            </div>
                         @endif
                     </div>
                 @endforeach

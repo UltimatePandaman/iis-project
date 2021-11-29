@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatesConferenceUserPivotTable extends Migration
+class CreatesConferenceVisitorsPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatesConferenceUserPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('conference_user', function (Blueprint $table) {
+        Schema::create('conference_visitors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('conference_id')->constrained('conferences');
+            $table->foreignId('conference_visitors_id');
+            $table->foreignId('conference_id');
+            $table->string('conference_visitors_type');
+            $table->integer('status')->unsigned()->nullable();
             $table->timestamps();
         });
     }
