@@ -12,6 +12,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="row">
                 @foreach ($conferences as $conference)
+                    @if($conference->capacity > $conference->visitors->count()+$conference->anons->count())
                     <div class="flex justify-between items-center mb-2 mt-2">
                         <div class="">
                             <x-nav-link class="mr-5 pt-5" href="/conference/{{$conference->id}}">{{$conference->title}}</x-nav-link>
@@ -43,6 +44,7 @@
                             </div>
                         @endif
                     </div>
+                    @endif
                 @endforeach
                 </div>
             </div>

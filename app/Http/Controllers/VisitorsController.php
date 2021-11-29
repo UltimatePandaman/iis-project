@@ -14,11 +14,10 @@ use Illuminate\Support\Facades\DB;
 class VisitorsController extends Controller
 {
     public function __construct(){
-        $this->middleware('throttle:5,1');
+        $this->middleware('throttle:5,1')->only('store');
     }
 
     public function destroy($pivot){
-
         DB::delete('delete from conference_visitors where id = ?', array($pivot));
         return redirect()->back();
     }

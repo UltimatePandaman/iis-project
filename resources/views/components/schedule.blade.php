@@ -36,7 +36,7 @@
                 editable: false,
                 eventLimit: false, // allow "more" link when too many events
                 events: [
-                    @foreach ($obj->conferences as $event)
+                    @foreach ($obj->conferences->unique() as $event)
                         {
                         title: '{{ $event->title }}',
                         start: '{{ $event->start }}',
@@ -45,7 +45,7 @@
                         color: '#E4A010'
                         },
                     @endforeach
-                    @foreach ($obj->presentations as $event)
+                    @foreach ($obj->presentations->unique() as $event)
                         {
                         title: '{{ $event->title }}',
                         start: '{{ $event->date.__('T').$event->start }}',
@@ -55,7 +55,7 @@
                         color: '#3E5F8A'
                         },
                     @endforeach
-                    @foreach ($obj->visiting as $event)
+                    @foreach ($obj->visiting->unique() as $event)
                         {
                         title: '{{ $event->title }}',
                         start: '{{ $event->start }}',
