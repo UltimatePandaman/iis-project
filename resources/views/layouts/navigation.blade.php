@@ -72,6 +72,16 @@
 
                         <x-dropdown-link href="/presentation/pending">Pending presentations</x-dropdown-link>
 
+                        <form method="GET" action="{{ route('visit.pending', ['user' => Auth::user()]) }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('visit.pending', ['user' => Auth::user()])"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Pending visits') }}
+                            </x-dropdown-link>
+                        </form>
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -85,11 +95,17 @@
                 </x-dropdown>
             </div>
             @else
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-nav-link align="right" href="/login">Login</x-nav-link>
-                <x-nav-link align="right" href="/register">Register</x-nav-link>
-
-
+            <div class="flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        {{ __('Login') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-nav-link>
+                </div>
             </div>
             @endif
 
@@ -108,6 +124,7 @@
     @if(Auth::check())
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -132,6 +149,32 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                
+                <x-responsive-nav-link href="/profile/rooms">My rooms</x-responsive-nav-link>
+
+                <x-responsive-nav-link href="/profile/conferences">My conferences</x-responsive-nav-link>
+
+                <x-responsive-nav-link href="/presentation/pending">Pending presentations</x-responsive-nav-link>
+
+                <form method="GET" action="{{ route('visit.pending', ['user' => Auth::user()]) }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('visit.pending', ['user' => Auth::user()])"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Pending visits') }}
+                    </x-responsive-nav-link>
+                </form>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form> 
             </div>
         </div>
     </div>

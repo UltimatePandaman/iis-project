@@ -47,8 +47,9 @@ class RoomController extends Controller
         $newroom = new Room($data);
         //$data['user_id'] = auth()->id();
         //Conference::create($data);
-        Conference::find($key)->rooms()->save($newroom);
-        return redirect('/');
+        $conference = Conference::find($key);
+        $conference->rooms()->save($newroom);
+        return redirect("/conference/$conference->id");
         
     }
 

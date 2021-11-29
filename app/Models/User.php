@@ -23,6 +23,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'balance',
     ];
 
     /**
@@ -63,5 +64,21 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Na které konference je přihlášen.
+     */
+    public function visiting()
+    {
+        return $this->morphToMany('App\Models\Conference', 'conference_visitors')->using(ConferenceVisitorPivot::class)->withPivot(['status', 'id'])->withTimestamps();
+    }
+
+    /**
+     * Na které přednášky hodlá jít. TODO
+     */
+    public function attending()
+    {
+        return $this->morphToMany('App\Models\Presentation', 'presentation_visitors');
     }
 }

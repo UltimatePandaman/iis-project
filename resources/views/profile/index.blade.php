@@ -20,6 +20,47 @@
                         </div>
                     </div>
                 </div>
+                <!--  -->
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <x-schedule :obj="$user"/>
+                </div>
+                @if ($user->visiting()->first() != null)
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex items-center justify-center min-h-screen">
+                        <div class="col-span-12">
+                            <div class="overflow-auto lg:overflow-visible ">
+                                <table class="w-max table text-gray-400 border-separate space-y-6 text-sm">
+                                    <thead class="bg-gray-700 text-gray-500 w-100">
+                                        <tr>
+                                            <th class="p-3">Conference:</th>
+                                            <th class="p-3">Status:</th>
+                                        </tr>
+                                    </thead>
+                                
+                                    <tbody>
+                                @foreach($user->visiting as $ticket)
+                                        <tr class="bg-gray-800">
+                                            <td class="p-3">
+                                                <div class="underline text-gray-400 hover:text-gray-500"><a href="/conference/{{ $ticket->id }}">{{ $ticket->title }}</a></div>
+                                            </td>
+                                            @if($ticket->pivot->status)
+                                            <td class="p-3 bg-green-600 text-gray-900">
+                                                {{ __('Accepted') }}
+                                            </td>
+                                            @else
+                                            <td class="p-3 bg-yellow-600 text-gray-900">
+                                                {{ __('Pending...') }}
+                                            </td>
+                                            @endif
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

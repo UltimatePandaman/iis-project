@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             //relace pro uživatele
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained();
 
             $table->string('nickname')->nullable();
 

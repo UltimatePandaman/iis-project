@@ -27,4 +27,12 @@ class Conference extends Model
     public function presentations(){
         return $this->hasMany('App\Models\Presentation');
     }
+
+    public function visitors(){
+        return $this->morphedByMany('App\Models\User', 'conference_visitors')->using(ConferenceVisitorPivot::class)->withPivot(['status', 'id'])->withTimestamps();
+    }
+
+    public function anons(){
+        return $this->morphedByMany('App\Models\Unregistered', 'conference_visitors')->using(ConferenceVisitorPivot::class)->withPivot(['status', 'id'])->withTimestamps();
+    }
 }

@@ -38,8 +38,8 @@ class ProfileController extends Controller
         //Zkontroluji vstup
         $data = request()->validate([
             'nickname' => ['string', 'max:50'],
-            'motto' => ['string', 'max:50'],
-            'description' => ['string', 'max:50'],
+            'motto' => ['nullable', 'string', 'max:100'],
+            'description' => ['nullable', 'string', 'max:250'],
             'profile_image' => 'image',
             'background_image' => 'image',
         ]);

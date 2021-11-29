@@ -25,7 +25,7 @@
                                 type="text"
                                 name="nickname"
                                 :value="old('nickname') ?? $user->profile->nickname"
-                                required autofocus />
+                                autofocus />
                         </div>
 
                         <!-- Motto -->
@@ -36,8 +36,7 @@
                                 class="block mt-1 w-full"
                                 type="text"
                                 name="motto"
-                                :value="old('motto') ?? $user->profile->motto"
-                                required />
+                                :value="old('motto') ?? ''"/>
                         </div>
 
                         <!-- Description -->
@@ -47,8 +46,7 @@
                             <x-input id="description"
                                 class="block mt-1 w-full"
                                 type="text" name="description"
-                                :value="old('description') ?? $user->profile->description"
-                                required />
+                                :value="old('description') ?? ''"/>
                         </div>
 
                         <!-- Avatar -->

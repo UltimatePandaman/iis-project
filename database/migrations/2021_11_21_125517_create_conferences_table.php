@@ -21,6 +21,7 @@ class CreateConferencesTable extends Migration
             $table->bigInteger('capacity');
             $table->date('start');
             $table->date('end');
+            $table->unsignedBigInteger('price');
             $table->timestamps();
 
             $table->index('user_id');

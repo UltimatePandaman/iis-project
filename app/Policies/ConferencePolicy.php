@@ -18,7 +18,6 @@ class ConferencePolicy
      */
     public function viewAny(User $user)
     {
-        //
     }
 
     /**
@@ -30,7 +29,6 @@ class ConferencePolicy
      */
     public function view(User $user, Conference $conference)
     {
-        //
     }
 
     /**
